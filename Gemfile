@@ -11,6 +11,8 @@ end
 
 group :default do
   gem 'rails'
+  gem 'pg'
+  gem 'progress_bar'
 end
 
 group :development do
