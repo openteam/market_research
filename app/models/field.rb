@@ -7,11 +7,11 @@ class Field < ActiveRecord::Base
 
   enumerize :kind, :in => [:quality, :quantity], :predicates => true
 
-  def min_value
-    configuration.mine.items_options[title].map(&:to_i).sort.first if quantity?
-  end
-
-  def max_value
-    configuration.mine.items_options[title].map(&:to_i).sort.last if quantity?
+  def set_min_and_max_value
+    if quantity?
+      self.min_value = configuration.mine.items_options[title].map(&:to_i).sort.first
+      self.max_value = configuration.mine.items_options[title].map(&:to_i).sort.last if quantity?
+      self.save!
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626025512) do
+ActiveRecord::Schema.define(:version => 20130626072032) do
 
   create_table "configurations", :force => true do |t|
     t.integer  "mine_id"
@@ -29,9 +29,22 @@ ActiveRecord::Schema.define(:version => 20130626025512) do
     t.float    "weight"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.float    "min_value"
+    t.float    "max_value"
   end
 
   add_index "fields", ["configuration_id"], :name => "index_fields_on_configuration_id"
+
+  create_table "item_segments", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "segment_id"
+    t.float    "distance"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "item_segments", ["item_id"], :name => "index_item_segments_on_item_id"
+  add_index "item_segments", ["segment_id"], :name => "index_item_segments_on_segment_id"
 
   create_table "items", :force => true do |t|
     t.text     "data"
