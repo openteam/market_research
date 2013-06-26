@@ -1,1 +1,6 @@
 ru:
+  enumerize:
+    field:
+      kind:
+        quantity: Количественная хар-ка
+        quality:  Качественная хар-ка

@@ -10,7 +10,11 @@ group :assets do
 end
 
 group :default do
+  gem 'enumerize'
+  gem 'inherited_resources'
+  gem 'nested_form'
   gem 'rails'
+  gem 'simple_form'
   gem 'pg'
   gem 'progress_bar'
 end

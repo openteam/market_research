@@ -11,10 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625074628) do
+ActiveRecord::Schema.define(:version => 20130625093200) do
+
+  create_table "configurations", :force => true do |t|
+    t.integer  "mine_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "configurations", ["mine_id"], :name => "index_configurations_on_mine_id"
+
+  create_table "fields", :force => true do |t|
+    t.integer  "configuration_id"
+    t.string   "title"
+    t.string   "kind"
+    t.integer  "weight"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "fields", ["configuration_id"], :name => "index_fields_on_configuration_id"
 
   create_table "items", :force => true do |t|
     t.text     "data"
+    t.integer  "mine_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "mines", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
