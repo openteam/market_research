@@ -1,0 +1,17 @@
+<%= simple_nested_form_for [@mine, @configuration, @segment] do |f| %>
+  <%= f.input :title %>
+
+  <%= f.fields_for :parameters do |param_form| %>
+    <%= param_form.input :field_id, :as => :select, :collection => @configuration.fields, :selected => param_form.object.field.id %>
+
+    <% if param_form.object.field.quality? %>
+      <%= param_form.input :value, :as => :select, :collection => @mine.items_options[param_form.object.field.title] %>
+    <% end %>
+
+    <% if param_form.object.field.quantity? %>
+      <%= param_form.input :value, :as => :integer %>
+    <% end %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

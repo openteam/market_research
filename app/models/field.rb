@@ -1,8 +1,9 @@
 class Field < ActiveRecord::Base
   extend Enumerize
 
-  belongs_to :configuration
   attr_accessible :kind, :title, :weight
 
-  enumerize :kind, :in => [:quality, :quantity]
+  belongs_to :configuration
+
+  enumerize :kind, :in => [:quality, :quantity], :predicates => true
 end

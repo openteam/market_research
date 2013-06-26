@@ -1,4 +1,7 @@
 <%= @configuration.title %>
 
 <%= render @configuration.fields %>
+<%= render @configuration.segments %>
+
+<%= link_to 'new segment', new_mine_configuration_segment_path(@mine, @configuration) %>
 

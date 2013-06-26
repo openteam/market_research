@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626022334) do
+ActiveRecord::Schema.define(:version => 20130626025512) do
 
   create_table "configurations", :force => true do |t|
     t.integer  "mine_id"
@@ -44,5 +44,25 @@ ActiveRecord::Schema.define(:version => 20130626022334) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "parameters", :force => true do |t|
+    t.integer  "segment_id"
+    t.integer  "field_id"
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "parameters", ["field_id"], :name => "index_parameters_on_field_id"
+  add_index "parameters", ["segment_id"], :name => "index_parameters_on_segment_id"
+
+  create_table "segments", :force => true do |t|
+    t.integer  "configuration_id"
+    t.string   "title"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "segments", ["configuration_id"], :name => "index_segments_on_configuration_id"
 
 end

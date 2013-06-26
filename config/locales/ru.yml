@@ -9,6 +9,15 @@ ru:
         kind:   Тип
         weight: Вaжность
 
+      parameter:
+        field_id: Поле
+        value:    Значение
+
+      segment:
+        title: Название
+
+
+
   enumerize:
     field:
       kind:

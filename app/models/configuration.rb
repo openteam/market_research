@@ -1,6 +1,10 @@
 class Configuration < ActiveRecord::Base
-  belongs_to :mine
   attr_accessible :title, :fields_attributes
-  has_many :fields
+
+  belongs_to :mine
+
+  has_many :fields, :dependent => :destroy
+  has_many :segments, :dependent => :destroy
+
   accepts_nested_attributes_for :fields
 end
