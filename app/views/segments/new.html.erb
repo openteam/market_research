@@ -11,6 +11,8 @@
     <% if param_form.object.field.quantity? %>
       <%= param_form.input :value, :as => :integer %>
     <% end %>
+
+    <%= param_form.link_to_remove 'delete parameter' %>
   <% end %>
 
   <%= f.submit %>

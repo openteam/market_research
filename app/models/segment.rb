@@ -5,7 +5,7 @@ class Segment < ActiveRecord::Base
 
   has_many :parameters, :dependent => :destroy
 
-  accepts_nested_attributes_for :parameters
+  accepts_nested_attributes_for :parameters, :allow_destroy => true
 
   def initialize_parameters
     configuration.fields.each { |field| parameters.build :field_id => field.id }
