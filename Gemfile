@@ -11,6 +11,7 @@ end
 
 group :default do
   gem 'enumerize'
+  gem 'd3_rails'
   gem 'inherited_resources'
   gem 'nested_form'
   gem 'rails'

@@ -8,8 +8,4 @@ class SegmentsController < ApplicationController
   def new
     new! { @segment.initialize_parameters }
   end
-
-  #def create
-    #raise params.inspect
-  #end
 end

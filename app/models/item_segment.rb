@@ -5,4 +5,8 @@ class ItemSegment < ActiveRecord::Base
   belongs_to :segment
 
   validates_uniqueness_of :item_id, :scope => :segment_id
+
+  def as_json
+    super(:only => [:distance, :segment_id])
+  end
 end

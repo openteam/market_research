@@ -7,6 +7,7 @@ class Configuration < ActiveRecord::Base
   has_many :items,      :through => :mine
   has_many :segments,   :dependent => :destroy
   has_many :parameters, :through => :segments
+  has_many :item_segments, :through => :segments
 
   accepts_nested_attributes_for :fields
 
