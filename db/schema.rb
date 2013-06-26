@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625093200) do
+ActiveRecord::Schema.define(:version => 20130626022334) do
 
   create_table "configurations", :force => true do |t|
     t.integer  "mine_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130625093200) do
     t.integer  "configuration_id"
     t.string   "title"
     t.string   "kind"
-    t.integer  "weight"
+    t.float    "weight"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

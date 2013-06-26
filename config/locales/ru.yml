@@ -1,4 +1,14 @@
 ru:
+  activerecord:
+    attributes:
+      configuration:
+        title: Название
+
+      field:
+        title:  Поле
+        kind:   Тип
+        weight: Вaжность
+
   enumerize:
     field:
       kind:
