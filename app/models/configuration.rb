@@ -12,6 +12,7 @@ class Configuration < ActiveRecord::Base
 
   def calc
     set_min_and_max_values_for_fields
+    delete_item_segments
 
     items.each do |item|
       closest_segment = segments.first
@@ -33,5 +34,9 @@ class Configuration < ActiveRecord::Base
 
   def set_min_and_max_values_for_fields
     parameters.each(&:set_min_and_max_value)
+  end
+
+  def delete_item_segments
+    segments.each { |segment| segment.item_segments.destroy_all }
   end
 end
