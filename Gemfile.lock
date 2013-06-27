@@ -51,6 +51,7 @@ GEM
     capistrano-unicorn (0.1.9)
       capistrano
     choice (0.1.6)
+    chronic (0.9.1)
     chunky_png (1.2.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -109,6 +110,12 @@ GEM
       capistrano-ext
       capistrano-unicorn
       rvm-capistrano
+    openteam-commons (0.2.3)
+      airbrake
+      configliere
+      rails
+      unicorn
+      whenever
     options (2.3.0)
       fattr
     pg (0.14.1)
@@ -179,17 +186,18 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    whenever (0.8.2)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake
   capistrano-db-tasks!
   capistrano-unicorn
   coffee-rails
   compass-rails
-  configliere
   d3_rails
   enumerize
   execjs
@@ -198,6 +206,7 @@ DEPENDENCIES
   jquery-rails
   nested_form
   openteam-capistrano
+  openteam-commons
   pg
   progress_bar
   rails

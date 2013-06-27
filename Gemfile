@@ -10,12 +10,11 @@ group :assets do
 end
 
 group :default do
-  gem 'airbrake'
-  gem 'configliere'
   gem 'd3_rails'
   gem 'enumerize'
   gem 'inherited_resources'
   gem 'nested_form'
+  gem 'openteam-commons'
   gem 'progress_bar'
   gem 'rails'
   gem 'simple_form'
