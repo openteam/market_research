@@ -1,4 +1,6 @@
 <%= render @mine.configurations %>
+<%= render @mine.groupings %>
 <%= link_to "new configuration", new_mine_configuration_path(@mine) %>
+<%= link_to "new grouping", new_mine_grouping_path(@mine) %>
 
 <%= render @mine.items %>

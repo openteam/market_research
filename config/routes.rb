@@ -4,6 +4,8 @@ MarketResearch::Application.routes.draw do
       get 'calc', :on => :member
       resources :segments
     end
+
+    resources :groupings
   end
 
   root :to => 'mines#index'

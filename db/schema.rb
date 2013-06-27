@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626072032) do
+ActiveRecord::Schema.define(:version => 20130627045706) do
 
   create_table "configuration_parameters", :force => true do |t|
     t.integer  "configuration_id"
@@ -34,6 +34,24 @@ ActiveRecord::Schema.define(:version => 20130626072032) do
   end
 
   add_index "configurations", ["mine_id"], :name => "index_configurations_on_mine_id"
+
+  create_table "grouping_parameters", :force => true do |t|
+    t.integer  "grouping_id"
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "grouping_parameters", ["grouping_id"], :name => "index_grouping_parameters_on_grouping_id"
+
+  create_table "groupings", :force => true do |t|
+    t.string   "title"
+    t.integer  "mine_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "groupings", ["mine_id"], :name => "index_groupings_on_mine_id"
 
   create_table "item_segments", :force => true do |t|
     t.integer  "item_id"

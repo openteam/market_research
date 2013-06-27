@@ -1,8 +1,9 @@
 # encoding: utf-8
 
 class Mine < ActiveRecord::Base
-  has_many :items
-  has_many :configurations
+  has_many :configurations, :dependent => :destroy
+  has_many :groupings,      :dependent => :destroy
+  has_many :items,          :dependent => :destroy
 
   def items_options
     result = {}

@@ -1,0 +1,11 @@
+<%= simple_nested_form_for [@mine, @grouping] do |f|  %>
+  <%= f.input :title %>
+
+  <%= f.fields_for :grouping_parameters do |parameter_form| %>
+    <%= parameter_form.input :title, :as => :select, :collection => @mine.items_options.keys, :selected => parameter_form.object.title %>
+    <%= parameter_form.link_to_remove 'remove' %>
+  <% end %>
+  <%= f.link_to_add 'add', :grouping_parameters %>
+
+  <%= f.submit %>
+<% end %>

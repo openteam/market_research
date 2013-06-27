@@ -9,6 +9,12 @@ ru:
         kind:   Тип
         weight: Вaжность
 
+      grouping:
+        title: Название
+
+      grouping_parameter:
+        title: Поле
+
       segment_parameter:
         configuration_parameter_id: Поле
         value:                      Значение
