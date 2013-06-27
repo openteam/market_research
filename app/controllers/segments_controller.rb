@@ -6,6 +6,6 @@ class SegmentsController < ApplicationController
   belongs_to :mine, :configuration
 
   def new
-    new! { @segment.initialize_parameters }
+    new! { @segment.initialize_segment_parameters }
   end
 end

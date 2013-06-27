@@ -1,4 +1,4 @@
-class Field < ActiveRecord::Base
+class ConfigurationParameter < ActiveRecord::Base
   extend Enumerize
 
   attr_accessible :kind, :title, :weight

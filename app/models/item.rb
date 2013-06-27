@@ -6,16 +6,18 @@ class Item < ActiveRecord::Base
   belongs_to :mine
 
   has_many :item_segments, :dependent => :destroy
-  has_many :segments, :through => :item_segments
+  has_many :segments,      :through => :item_segments
 
   serialize :data, OpenStruct
 
   def dist_from(segment)
     dist = 0
-    k = segment.parameters.map(&:weight).sum.to_f / segment.parameters.count.to_f
-    segment.parameters.each do |parameter|
-      dist += 1.0 * parameter.weight * k if parameter.quality? && data.send(parameter.field_title) != parameter.value
-      dist += (data.send(parameter.field_title).to_f - parameter.value.to_f).abs / (parameter.max_value - parameter.min_value) * parameter.weight * k if parameter.quantity?
+    k = segment.segment_parameters.map(&:weight).sum.to_f / segment.segment_parameters.count.to_f
+
+    segment.segment_parameters.each do |segment_parameter|
+      dist += 1.0 * segment_parameter.weight * k if segment_parameter.quality? && data.send(segment_parameter.title) != segment_parameter.value
+      dist += (data.send(segment_parameter.title).to_f - segment_parameter.value.to_f).abs /
+        (segment_parameter.max_value - segment_parameter.min_value) * segment_parameter.weight * k if segment_parameter.quantity?
     end
 
     dist

@@ -4,14 +4,14 @@ ru:
       configuration:
         title: Название
 
-      field:
+      configuration_parameter:
         title:  Поле
         kind:   Тип
         weight: Вaжность
 
-      parameter:
-        field_id: Поле
-        value:    Значение
+      segment_parameter:
+        configuration_parameter_id: Поле
+        value:                      Значение
 
       segment:
         title: Название
@@ -19,7 +19,7 @@ ru:
 
 
   enumerize:
-    field:
+    configuration_parameter:
       kind:
         quantity: Количественная хар-ка
         quality:  Качественная хар-ка

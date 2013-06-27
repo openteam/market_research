@@ -1,18 +1,19 @@
 class Configuration < ActiveRecord::Base
-  attr_accessible :title, :fields_attributes
+  attr_accessible :title, :configuration_parameters_attributes
 
   belongs_to :mine
 
-  has_many :fields,     :dependent => :destroy
-  has_many :items,      :through => :mine
-  has_many :segments,   :dependent => :destroy
-  has_many :parameters, :through => :segments
-  has_many :item_segments, :through => :segments
+  has_many :configuration_parameters, :dependent => :destroy
+  has_many :items,                    :through => :mine
 
-  accepts_nested_attributes_for :fields
+  has_many :segments,           :dependent => :destroy
+  has_many :segment_parameters, :through => :segments
+  has_many :item_segments,      :through => :segments
+
+  accepts_nested_attributes_for :configuration_parameters
 
   def calc
-    set_min_and_max_values_for_fields
+    set_min_and_max_values_for_quantity_parameters
     delete_item_segments
 
     items.each do |item|
@@ -33,8 +34,8 @@ class Configuration < ActiveRecord::Base
 
   private
 
-  def set_min_and_max_values_for_fields
-    parameters.each(&:set_min_and_max_value)
+  def set_min_and_max_values_for_quantity_parameters
+    segment_parameters.each(&:set_min_and_max_value)
   end
 
   def delete_item_segments

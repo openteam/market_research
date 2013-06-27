@@ -1,11 +1,11 @@
 <%= simple_nested_form_for [parent, resource] do |f| %>
   <%= f.input :title %>
-  <%= f.fields_for :fields do |ff| %>
+  <%= f.fields_for :configuration_parameters do |ff| %>
     <%= ff.input :title, :collection => parent.items_options.keys %>
     <%= ff.input :kind %>
     <%= ff.input :weight %>
     <%= ff.link_to_remove 'remove' %>
   <% end %>
-  <%= f.link_to_add 'add', :fields %>
+  <%= f.link_to_add 'add', :configuration_parameters %>
   <%= f.submit %>
 <% end %>
