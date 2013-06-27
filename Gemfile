@@ -10,6 +10,7 @@ group :assets do
 end
 
 group :default do
+  gem 'airbrake'
   gem 'configliere'
   gem 'd3_rails'
   gem 'enumerize'
@@ -29,7 +30,6 @@ group :development do
 end
 
 group :production do
-  gem 'airbrake'
   gem 'pg'
   gem 'unicorn'
 end
