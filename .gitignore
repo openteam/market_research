@@ -1,6 +1,8 @@
 /.bundle
 /bin
 /config/database.yml
+/config/settings.yml
+/config/deploy.yml
 /db/*.sqlite3
 /log/*.log
 /tmp
