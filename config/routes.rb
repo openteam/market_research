@@ -5,7 +5,9 @@ MarketResearch::Application.routes.draw do
       resources :segments
     end
 
-    resources :groupings
+    resources :groupings do
+      get 'data', :on => :member
+    end
   end
 
   root :to => 'mines#index'

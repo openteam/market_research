@@ -11,12 +11,20 @@ class Grouping < ActiveRecord::Base
     begin
       grouping_parameter = enumerator.next
     rescue
-      return hash.merge('children' => Item.with(conditions).map { |item| { 'name' => item.data['Наименование'], 'size' => 1 } })
+      items = Item.with(conditions)
+
+      if items.any?
+        return hash.merge('children' => items.map { |item| { 'name' => item.data['Наименование'], 'size' => 1 } })
+      else
+        return nil
+      end
+
     end
 
     hash['children'] = []
-    (mine.items_options[grouping_parameter.title][0..3]).each do |title|
-      hash['children'] << baz({'name' => title}, enumerator, conditions.merge(grouping_parameter.title => title))
+    (mine.items_options[grouping_parameter.title]).each do |title|
+      children = baz({'name' => title}, enumerator, conditions.merge(grouping_parameter.title => title))
+      hash['children'] << children if children
     end
 
     hash
