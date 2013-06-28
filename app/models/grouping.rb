@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Grouping < ActiveRecord::Base
   attr_accessible :title, :grouping_parameters_attributes
 
