@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require d3
-//= require cluster_visualisation
+//= require circle_visualization
+//= require cluster_visualization
 //= require_tree .

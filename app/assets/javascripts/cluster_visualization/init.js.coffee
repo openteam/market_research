@@ -1,13 +1,15 @@
-@init_cluster_visualisation = () ->
+@init_cluster_visualization = () ->
   cloud = $('.cloud')
+  return unless cloud.hasClass('.cluster')
   centers = {}
+
+  width  = 1024
+  height = 768
 
   data = eval cloud.data('json')
   segments = eval cloud.data('segments')
   svg = d3.select('.cloud').append('svg')
-
-  width  = 1024
-  height = 768
+  svg.attr('width', width).attr('height', height)
 
   cloud.css('border', '1px solid #000').css('width', width).css('height', height)
 
@@ -15,7 +17,6 @@
     shift = width/(segments+1)
     center_x = shift*i
     center_y = height/2
-    svg.attr('width', width).attr('height', height)
     centers[i] = svg.append('circle')
     centers[i].attr('cx', center_x).attr('cy', center_y).attr('r', 5).attr('fill', 'green')
 

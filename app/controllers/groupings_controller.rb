@@ -1,7 +1,7 @@
 class GroupingsController < ApplicationController
   inherit_resources
 
-  actions :all, :except => [:index, :show]
+  actions :all
 
   belongs_to :mine
 end
