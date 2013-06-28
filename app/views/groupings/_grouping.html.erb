@@ -1,5 +1,5 @@
 <div>
-  <%= grouping.title %>
+  <%= link_to grouping.title, mine_grouping_path(@mine, grouping) %>
   <%= link_to 'edit', edit_mine_grouping_path(@mine, grouping) %>
 
   <%= render grouping.grouping_parameters %>

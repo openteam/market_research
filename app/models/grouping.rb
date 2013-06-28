@@ -14,7 +14,7 @@ class Grouping < ActiveRecord::Base
       items = Item.with(conditions)
 
       if items.any?
-        return hash.merge('children' => items.map { |item| { 'name' => item.data['Наименование'], 'size' => 1 } })
+        return hash.merge('children' => items.map { |item| { 'name' => item.id, 'size' => (item.data['Специальностей'] || 1).to_i } })
       else
         return nil
       end

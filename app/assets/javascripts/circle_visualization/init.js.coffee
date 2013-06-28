@@ -2,8 +2,8 @@
   cloud = $('.cloud')
   return unless cloud.hasClass('circle')
 
-  width =  1280
-  height = 800
+  width =  2048
+  height = 1600
 
   cloud.css(
     border: '1px solid #000',
@@ -21,7 +21,7 @@
     d.size
   )
 
-  d3.json('data', (error, data) ->
+  d3.json(window.location+'/data', (error, data) ->
     node = svg.datum(data).selectAll('.node').data(pack.nodes).enter().append('g').attr(
       class: (d) ->
         if d.children
