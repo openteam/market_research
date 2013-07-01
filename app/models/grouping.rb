@@ -5,7 +5,7 @@ class Grouping < ActiveRecord::Base
 
   belongs_to :mine
 
-  has_many :grouping_parameters, :dependent => :destroy
+  has_many :grouping_parameters, :dependent => :destroy, :order => 'grouping_parameters.id ASC'
 
   accepts_nested_attributes_for :grouping_parameters, :allow_destroy => true
 
