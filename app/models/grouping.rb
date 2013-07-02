@@ -16,7 +16,10 @@ class Grouping < ActiveRecord::Base
       items = Item.with(conditions)
 
       if items.any?
-        return hash.merge('children' => items.map { |item| { 'name' => item.id, 'size' => (item.data['Специальностей'] || 1).to_i } })
+        return hash.merge(
+          'children' => items.map { |item| { 'name' => item.id, 'size' => (item.data['Специальностей'] || 1).to_i } },
+          'size' => items.size
+        )
       else
         return nil
       end
@@ -24,6 +27,8 @@ class Grouping < ActiveRecord::Base
     end
 
     hash['children'] = []
+    hash['size'] = Item.with(conditions).count
+
     (mine.items_options[grouping_parameter.title]).each do |title|
       children = baz({'name' => title}, enumerator, conditions.merge(grouping_parameter.title => title))
       hash['children'] << children if children

@@ -44,7 +44,7 @@
     )
 
     node.append('text').text((d) ->
-      d.name + (if d.children then '' else ': ' + d.size)
+      d.name + ': ' + d.size
     ).attr(
       color: '#000000',
       'font-family': 'sans-serif',
