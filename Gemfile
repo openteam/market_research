@@ -14,6 +14,7 @@ group :default do
   gem 'enumerize'
   gem 'inherited_resources'
   gem 'nested_form'
+  gem 'nokogiri'
   gem 'openteam-commons'
   gem 'progress_bar'
   gem 'rails'
