@@ -7,7 +7,7 @@ MarketResearch::Application.routes.draw do
 
     resources :groupings do
       resources :grouping_parameters, :only => [:edit, :update]
-      get 'data', :on => :member
+      get 'segments', :on => :member
     end
   end
 

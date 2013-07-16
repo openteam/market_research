@@ -1,0 +1,7 @@
+<% grouping_parameter.grouping_values.each do |value| %>
+  <%= content_tag "h#{level+1}", value.title %>
+  <%= render :partial => 'segments_level',
+    :locals => {
+      level: level+1,
+      grouping_parameter: resource.grouping_parameters[level+1]} if level + 1 < resource.grouping_parameters.count %>
+<% end %>

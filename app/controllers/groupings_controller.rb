@@ -5,9 +5,8 @@ class GroupingsController < ApplicationController
 
   belongs_to :mine
 
-  custom_actions :resource => :data
+  custom_actions :resource => :segments
 
-  def data
-    data! { render :json => @grouping.bar and return }
+  def segments
   end
 end
