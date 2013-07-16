@@ -17,7 +17,7 @@ class Grouping < ActiveRecord::Base
   def recalculate_segments(previous_segment = nil, grouping_parameter = nil, level = 0)
     grouping_parameter ||= grouping_parameters.first
     grouping_parameter.grouping_values.each do |value|
-      segment_title = previous_segment ? previous_segment.title + " #{value.title}" : value.title
+      segment_title = value.title
       segment = Segment.create! :title => segment_title, :grouping_value => value, :parent => previous_segment
       recalculate_segments(segment, grouping_parameters[level+1], level+1) if level+1 < grouping_parameters.count
     end

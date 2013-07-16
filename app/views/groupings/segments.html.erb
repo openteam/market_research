@@ -1,12 +1,15 @@
-<table>
-  <% Segment.roots.where(:grouping_value_id => resource.grouping_parameters.map(&:grouping_values).flatten).each do |segment| %>
-  <tr>
-    <td><%= content_tag "h#{segment.depth+1}", segment.title %></td>
-    <td><%= content_tag "h#{segment.depth+1}", segment.items.count %></td>
-  </tr>
-  <%= render :partial => 'segments_level', :locals => {segment: segment} %>
-<% end %>
-</table>
+<div class='segmets'>
+  <table>
+    <% Segment.roots.where(:grouping_value_id => resource.grouping_parameters.map(&:grouping_values).flatten).each do |segment| %>
+    <tr>
+      <td colspan=2><%= content_tag "h#{segment.depth+1}", "#{segment.title} (#{segment.items.count})" %></td>
+    </tr>
+    <%= render :partial => 'segments_level', :locals => {segment: segment} %>
+  <% end %>
+  </table>
 
-<%= link_to "recalculate", rebuild_resource_path, :method => :put %>
-<%= link_to "back", resource_path %>
+  <div class='links'>
+    <%= link_to "recalculate", rebuild_resource_path, :method => :put %>
+    <%= link_to "back", resource_path %>
+  </div>
+</div>
