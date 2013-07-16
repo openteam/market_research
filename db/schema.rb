@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716031528) do
+ActiveRecord::Schema.define(:version => 20130716032934) do
 
   create_table "configuration_parameters", :force => true do |t|
     t.integer  "configuration_id"
@@ -76,6 +76,27 @@ ActiveRecord::Schema.define(:version => 20130716031528) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "quality_grouping_values", :force => true do |t|
+    t.string   "title"
+    t.text     "values"
+    t.integer  "grouping_parameter_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "quality_grouping_values", ["grouping_parameter_id"], :name => "index_quality_grouping_values_on_grouping_parameter_id"
+
+  create_table "quantity_grouping_values", :force => true do |t|
+    t.string   "title"
+    t.integer  "min_count"
+    t.integer  "max_count"
+    t.integer  "grouping_parameter_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "quantity_grouping_values", ["grouping_parameter_id"], :name => "index_quantity_grouping_values_on_grouping_parameter_id"
 
   create_table "segment_parameters", :force => true do |t|
     t.integer  "segment_id"
