@@ -1,4 +1,4 @@
-class CreateQualityGroupingValues < ActiveRecord::Migration
+class CreateQualityGroupingValue < ActiveRecord::Migration
   def change
     create_table :quality_grouping_values do |t|
       t.string :title

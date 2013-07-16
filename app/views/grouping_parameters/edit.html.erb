@@ -1,0 +1,12 @@
+<h1><%= @grouping_parameter.title %></h1>
+<%= simple_nested_form_for [@mine, @grouping, @grouping_parameter] do |f|  %>
+  <% if @grouping_parameter.kind.quality? %>
+  <%= f.fields_for :quality_grouping_values do |value_form| %>
+    <%= value_form.input :title %>
+    <%#= parameter_form.input :kind %>
+    <%= value_form.link_to_remove 'remove' %>
+  <% end %>
+  <%= f.link_to_add 'add', :quality_grouping_values %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

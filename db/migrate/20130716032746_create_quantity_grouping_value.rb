@@ -1,4 +1,4 @@
-class CreateQuantityGroupingValues < ActiveRecord::Migration
+class CreateQuantityGroupingValue < ActiveRecord::Migration
   def change
     create_table :quantity_grouping_values do |t|
       t.string :title

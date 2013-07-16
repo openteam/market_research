@@ -1,4 +1,8 @@
 <div>
   <%= grouping_parameter.title %>
   <%= grouping_parameter.kind_text %>
+  <ul>
+    <%= render grouping_parameter.send("#{grouping_parameter.kind}_grouping_values") %>
+  </ul>
+  <%= link_to "edit", edit_mine_grouping_grouping_parameter_path(@mine, @grouping, grouping_parameter) %>
 </div>
