@@ -1,12 +1,21 @@
 <h1><%= @grouping_parameter.title %></h1>
 <%= simple_nested_form_for [@mine, @grouping, @grouping_parameter] do |f|  %>
   <% if @grouping_parameter.kind.quality? %>
-  <%= f.fields_for :quality_grouping_values do |value_form| %>
-    <%= value_form.input :title %>
-    <%= value_form.input :values, as: :check_boxes, :collection => @mine.uniq_values_for_option(@grouping_parameter.title) %>
-    <%= value_form.link_to_remove 'remove' %>
+    <%= f.fields_for :quality_grouping_values do |value_form| %>
+      <%= value_form.input :title %>
+      <%= value_form.input :values, as: :check_boxes, :collection => @mine.uniq_values_for_option(@grouping_parameter.title) %>
+      <%= value_form.link_to_remove 'remove' %>
+    <% end %>
+    <%= f.link_to_add 'add', :quality_grouping_values %>
   <% end %>
-  <%= f.link_to_add 'add', :quality_grouping_values %>
+  <% if @grouping_parameter.kind.quantity? %>
+    <%= f.fields_for :quantity_grouping_values do |value_form| %>
+      <%= value_form.input :title %>
+      <%= value_form.input :min_count %>
+      <%= value_form.input :max_count %>
+      <%= value_form.link_to_remove 'remove' %>
+    <% end %>
+    <%= f.link_to_add 'add', :quantity_grouping_values %>
   <% end %>
   <%= f.submit %>
 <% end %>
