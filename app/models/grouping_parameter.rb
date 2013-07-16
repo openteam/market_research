@@ -1,5 +1,8 @@
 class GroupingParameter < ActiveRecord::Base
-  attr_accessible :title
+  extend Enumerize
+  attr_accessible :title, :kind
 
   belongs_to :grouping
+
+  enumerize :kind, :in => [:quality, :quantity], :predicates => true
 end

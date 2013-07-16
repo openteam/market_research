@@ -27,5 +27,9 @@ ru:
   enumerize:
     configuration_parameter:
       kind:
-        quantity: Количественная хар-ка
-        quality:  Качественная хар-ка
+        quantity: Количественная
+        quality:  Качественная
+    grouping_parameter:
+      kind:
+        quantity: Количественная
+        quality:  Качественная
