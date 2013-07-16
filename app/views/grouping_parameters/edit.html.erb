@@ -3,7 +3,7 @@
   <% if @grouping_parameter.kind.quality? %>
   <%= f.fields_for :quality_grouping_values do |value_form| %>
     <%= value_form.input :title %>
-    <%#= parameter_form.input :kind %>
+    <%= value_form.input :values, as: :check_boxes, :collection => @mine.uniq_values_for_option(@grouping_parameter.title) %>
     <%= value_form.link_to_remove 'remove' %>
   <% end %>
   <%= f.link_to_add 'add', :quality_grouping_values %>

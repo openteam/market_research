@@ -17,4 +17,8 @@ class Mine < ActiveRecord::Base
 
     @result
   end
+
+  def uniq_values_for_option(option)
+    items.map {|i| i.data[option]}.uniq
+  end
 end
