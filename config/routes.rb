@@ -8,6 +8,7 @@ MarketResearch::Application.routes.draw do
     resources :groupings do
       resources :grouping_parameters, :only => [:edit, :update]
       get 'segments', :on => :member
+      put 'rebuild', :on => :member
     end
   end
 

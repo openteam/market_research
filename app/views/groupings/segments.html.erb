@@ -1,1 +1,12 @@
-<%= render :partial => 'segments_level', :locals => {level: 0, grouping_parameter: resource.grouping_parameters.first} %>
+<table>
+  <% Segment.roots.where(:grouping_value_id => resource.grouping_parameters.map(&:grouping_values).flatten).each do |segment| %>
+  <tr>
+    <td><%= content_tag "h#{segment.depth+1}", segment.title %></td>
+    <td><%= content_tag "h#{segment.depth+1}", segment.items.count %></td>
+  </tr>
+  <%= render :partial => 'segments_level', :locals => {segment: segment} %>
+<% end %>
+</table>
+
+<%= link_to "recalculate", rebuild_resource_path, :method => :put %>
+<%= link_to "back", resource_path %>

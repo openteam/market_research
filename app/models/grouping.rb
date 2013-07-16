@@ -9,58 +9,18 @@ class Grouping < ActiveRecord::Base
 
   accepts_nested_attributes_for :grouping_parameters, :allow_destroy => true
 
-  #def baz(hash = { 'name' => 'root'}, enumerator = grouping_parameters.each, conditions = {})
-    #begin
-      #grouping_parameter = enumerator.next
-    #rescue
-      #items = Item.with(conditions)
+  def rebuild_segments
+    Segment.roots.where(:grouping_value_id => grouping_parameters.map(&:grouping_values).flatten).destroy_all
+    recalculate_segments
+  end
 
-      #if items.any?
-        #return hash.merge(
-          #'children' => items.map { |item| { 'name' => item.id, 'size' => (item.data['Специальностей'] || 1).to_i } },
-          #'size' => items.size
-        #)
-      #else
-        #return nil
-      #end
+  def recalculate_segments(previous_segment = nil, grouping_parameter = nil, level = 0)
+    grouping_parameter ||= grouping_parameters.first
+    grouping_parameter.grouping_values.each do |value|
+      segment_title = previous_segment ? previous_segment.title + " #{value.title}" : value.title
+      segment = Segment.create! :title => segment_title, :grouping_value => value, :parent => previous_segment
+      recalculate_segments(segment, grouping_parameters[level+1], level+1) if level+1 < grouping_parameters.count
+    end
+  end
 
-    #end
-
-    #hash['children'] = []
-    #hash['size'] = Item.with(conditions).count
-
-    #(mine.items_options[grouping_parameter.title]).each do |title|
-      #children = baz({'name' => title}, enumerator, conditions.merge(grouping_parameter.title => title))
-      #hash['children'] << children if children
-    #end
-
-    #hash
-  #end
-
-  #def foo(grouping_parameter, conditions = {}, hash = nil)
-    #if grouping_parameter.nil?
-      #return Item.with(conditions).map(&:id)
-      ##return []
-    #end
-
-    #hash ||= { 'name' => 'root' }
-    ##mine.items_options[grouping_parameter.title].each { |title| hash[title] = nil }
-    #mine.items_options[grouping_parameter.title].each { |title| hash['children'] = nil }
-
-    ##hash.each do |title, _|
-      ##hash['children'] = foo(grouping_parameters[grouping_parameters.index(grouping_parameter) + 1], conditions.merge(grouping_parameter.title => title))
-    ##end
-
-    #grouping_parameters.each do |grouping_parameter|
-      #p mine.items_options[grouping_parameter.title]
-      #hash['children'] = foo(grouping_parameters[grouping_parameters.index(grouping_parameter) + 1], conditions.merge(grouping_parameter.title => '11'))
-    #end
-
-    #hash
-  #end
-
-  #def bar
-    ##foo(grouping_parameters.first)
-    #baz
-  #end
 end

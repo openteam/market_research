@@ -38,6 +38,8 @@ GEM
       activesupport
       builder
       json
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     arel (3.0.2)
     builder (3.0.4)
     capistrano (2.15.4)
@@ -197,6 +199,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry
   capistrano-db-tasks!
   capistrano-unicorn
   coffee-rails

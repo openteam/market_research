@@ -1,5 +1,5 @@
 class ItemSegment < ActiveRecord::Base
-  attr_accessible :distance, :item_id
+  attr_accessible :distance, :item_id, :item
 
   belongs_to :item
   belongs_to :segment

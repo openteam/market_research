@@ -10,6 +10,7 @@ group :assets do
 end
 
 group :default do
+  gem 'ancestry'
   gem 'd3_rails'
   gem 'enumerize'
   gem 'inherited_resources'

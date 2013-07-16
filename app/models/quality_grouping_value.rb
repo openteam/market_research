@@ -3,6 +3,8 @@ class QualityGroupingValue < ActiveRecord::Base
   attr_accessible :title, :values
   serialize :values, Array
 
+  has_many :segments, :as => :grouping_value
+
   before_save :compact_values
 
   private
