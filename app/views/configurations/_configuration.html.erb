@@ -1,4 +1,4 @@
 <div>
-  <%= configuration.title %>
-  <%= render configuration.configuration_parameters %>
+  <%= link_to "#{configuration.title}", mine_configuration_path(@mine, configuration) %>
+  <%= link_to "edit", edit_mine_configuration_path(@mine, configuration)  %>
 </div>
