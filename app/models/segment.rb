@@ -1,9 +1,10 @@
 class Segment < ActiveRecord::Base
-  attr_accessible :title, :grouping_value, :parent #, :segment_parameters_attributes
+  attr_accessible :title, :grouping_value, :parent, :grouping #, :segment_parameters_attributes
   has_ancestry
   belongs_to :grouping_value, :polymorphic => true
 
   #belongs_to :configuration
+  belongs_to :grouping
 
   has_many :item_segments,      :dependent => :destroy
   has_many :items,              :through => :item_segments

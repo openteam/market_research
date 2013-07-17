@@ -6,6 +6,7 @@ class Grouping < ActiveRecord::Base
   belongs_to :mine
 
   has_many :grouping_parameters, :dependent => :destroy, :order => 'grouping_parameters.id ASC'
+  has_many :segments, :dependent => :destroy
 
   accepts_nested_attributes_for :grouping_parameters, :allow_destroy => true
 
@@ -18,7 +19,7 @@ class Grouping < ActiveRecord::Base
     grouping_parameter ||= grouping_parameters.first
     grouping_parameter.grouping_values.each do |value|
       segment_title = value.title
-      segment = Segment.create! :title => segment_title, :grouping_value => value, :parent => previous_segment
+      segment = Segment.create! :title => segment_title, :grouping_value => value, :parent => previous_segment, :grouping => self
       recalculate_segments(segment, grouping_parameters[level+1], level+1) if level+1 < grouping_parameters.count
     end
   end

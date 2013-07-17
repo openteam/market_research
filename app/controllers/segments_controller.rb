@@ -1,9 +1,12 @@
 class SegmentsController < ApplicationController
   inherit_resources
 
-  actions :all, :except => :index
+  actions :all
 
-  belongs_to :mine, :configuration
+  belongs_to :mine do
+    belongs_to :configuration, :optional => true
+    belongs_to :grouping, :optional => true
+  end
 
   def new
     new! { @segment.initialize_segment_parameters }

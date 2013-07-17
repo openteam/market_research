@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716074947) do
+ActiveRecord::Schema.define(:version => 20130717033928) do
 
   create_table "configuration_parameters", :force => true do |t|
     t.integer  "configuration_id"
@@ -117,8 +117,10 @@ ActiveRecord::Schema.define(:version => 20130716074947) do
     t.string   "ancestry"
     t.integer  "grouping_value_id"
     t.string   "grouping_value_type"
+    t.integer  "grouping_id"
   end
 
   add_index "segments", ["configuration_id"], :name => "index_segments_on_configuration_id"
+  add_index "segments", ["grouping_id"], :name => "index_segments_on_grouping_id"
 
 end

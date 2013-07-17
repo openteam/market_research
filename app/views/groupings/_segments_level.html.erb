@@ -1,7 +1,7 @@
 <% segment.children.each do |child| %>
   <tr>
     <td><%= content_tag "h#{child.depth+1}", child.title %></td>
-    <td><%= content_tag "h#{child.depth+1}", child.items.count %></td>
+    <td><%= link_to "#{child.items.count}", mine_grouping_segments_path(resource.mine, resource, child) %></td>
   </tr>
   <%= render :partial => 'segments_level', :locals => {segment: child} if child.has_children? %>
 <% end %>
