@@ -2,10 +2,10 @@
 
 <%= render @configuration.configuration_parameters %>
 
-<%= link_to 'new segment', new_mine_configuration_segment_path(@mine, @configuration) %>
+<%= link_to 'new segment', new_mine_configuration_configuration_segment_path(@mine, @configuration) %>
 
 <%= link_to 'calc', calc_mine_configuration_path(@mine, @configuration) %>
 
-<%= render @configuration.segments %>
+<%= render @configuration.configuration_segments %>
 
-<div class="cloud cluster" data-json='<%= JSON.pretty_generate(@configuration.item_segments.as_json) %>' data-segments='<%= @configuration.segments.count %>'></div>
+<div class="cloud cluster" data-json='<%= JSON.pretty_generate(@configuration.item_segments.as_json) %>' data-segments='<%= @configuration.configuration_segments.count %>'></div>

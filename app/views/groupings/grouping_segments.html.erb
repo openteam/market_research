@@ -1,6 +1,6 @@
 <div class='segmets'>
   <table>
-    <% Segment.roots.where(:grouping_value_id => resource.grouping_parameters.map(&:grouping_values).flatten).each do |segment| %>
+    <% GroupingSegment.roots.where(:grouping_value_id => resource.grouping_parameters.map(&:grouping_values).flatten).each do |segment| %>
       <tr>
       <td colspan=2><%= content_tag "h#{segment.depth+1}", "#{segment.title}" %>(<%= link_to "#{segment.items.count}", mine_grouping_segments_path(resource.mine, resource, segment) %>)</td>
       </tr>

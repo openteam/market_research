@@ -6,9 +6,9 @@ class Configuration < ActiveRecord::Base
   has_many :configuration_parameters, :dependent => :destroy
   has_many :items,                    :through => :mine
 
-  has_many :segments,           :dependent => :destroy
-  has_many :segment_parameters, :through => :segments
-  has_many :item_segments,      :through => :segments
+  has_many :configuration_segments,   :dependent => :destroy
+  has_many :segment_parameters,       :through => :configuration_segments
+  has_many :item_segments,            :through => :configuration_segments
 
   accepts_nested_attributes_for :configuration_parameters
 
@@ -17,10 +17,10 @@ class Configuration < ActiveRecord::Base
     delete_item_segments
 
     items.each do |item|
-      closest_segment = segments.first
+      closest_segment = configuration_segments.first
       min_dist = item.dist_from(closest_segment)
 
-      segments[1..-1].each do |segment|
+      configuration_segments[1..-1].each do |segment|
         dist = item.dist_from(segment)
         if dist < min_dist
           min_dist = dist
@@ -39,6 +39,6 @@ class Configuration < ActiveRecord::Base
   end
 
   def delete_item_segments
-    segments.each { |segment| segment.item_segments.destroy_all }
+    configuration_segments.each { |segment| segment.item_segments.destroy_all }
   end
 end

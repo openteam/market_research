@@ -1,4 +1,4 @@
-<%= simple_nested_form_for [@mine, @configuration, @segment] do |f| %>
+<%= simple_nested_form_for [@mine, @configuration, @configuration_segment] do |f| %>
   <%= f.input :title %>
 
   <%= f.fields_for :segment_parameters do |param_form| %>
