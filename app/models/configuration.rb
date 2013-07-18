@@ -3,7 +3,7 @@ class Configuration < ActiveRecord::Base
 
   belongs_to :mine
 
-  has_many :configuration_parameters, :dependent => :destroy
+  has_many :configuration_parameters, :dependent => :destroy, :order => 'configuration_parameters.id ASC'
   has_many :items,                    :through => :mine
 
   has_many :configuration_segments,   :dependent => :destroy

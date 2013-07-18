@@ -10,5 +10,13 @@ class ConfigurationSegmentsController < ApplicationController
   def new
     new! { @configuration_segment.initialize_segment_parameters }
   end
+
+  def create
+    create! {parent_url}
+  end
+
+  def update
+    update! {parent_url}
+  end
 end
 

@@ -1,21 +1,16 @@
 <%= simple_nested_form_for [@mine, @configuration, @configuration_segment] do |f| %>
   <%= f.input :title %>
+  <%= f.fields_for :configuration_segment_parameters do |param_form| %>
+    <h3><%= param_form.object.configuration_parameter.title %></h3>
+    <%= param_form.input :configuration_parameter_id, :as => :hidden %>
 
-  <%= f.fields_for :segment_parameters do |param_form| %>
-    <%= param_form.input :configuration_parameter_id,
-      :as => :select,
-      :collection => @configuration.configuration_parameters,
-      :selected => param_form.object.configuration_parameter.id %>
-
-    <% if param_form.object.quality? %>
-      <%= param_form.input :value, :as => :select, :collection => @mine.items_options[param_form.object.title] %>
+    <% if param_form.object.configuration_parameter.kind.quality? %>
+      <%= param_form.input :quality_value,
+        :as => :check_boxes,
+        :collection => @mine.uniq_values_for_option(param_form.object.configuration_parameter.title) %>
+    <% else %>
+      <%= param_form.input :quantity_value, :as => :integer %>
     <% end %>
-
-    <% if param_form.object.quantity? %>
-      <%= param_form.input :value, :as => :integer %>
-    <% end %>
-
-    <%= param_form.link_to_remove 'delete parameter' %>
   <% end %>
 
   <%= f.submit %>

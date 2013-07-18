@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717084757) do
+ActiveRecord::Schema.define(:version => 20130718015206) do
 
   create_table "configuration_parameters", :force => true do |t|
     t.integer  "configuration_id"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(:version => 20130717084757) do
   end
 
   add_index "configuration_parameters", ["configuration_id"], :name => "index_configuration_parameters_on_configuration_id"
+
+  create_table "configuration_segment_parameters", :force => true do |t|
+    t.integer  "configuration_segment_id"
+    t.integer  "configuration_parameter_id"
+    t.integer  "quantity_value"
+    t.text     "quality_value"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "configuration_segment_parameters", ["configuration_parameter_id"], :name => "conf_seg_par_conf_par_id"
+  add_index "configuration_segment_parameters", ["configuration_segment_id"], :name => "conf_seg_par_id"
 
   create_table "configurations", :force => true do |t|
     t.integer  "mine_id"
@@ -97,17 +109,6 @@ ActiveRecord::Schema.define(:version => 20130717084757) do
   end
 
   add_index "quantity_grouping_values", ["grouping_parameter_id"], :name => "index_quantity_grouping_values_on_grouping_parameter_id"
-
-  create_table "segment_parameters", :force => true do |t|
-    t.integer  "segment_id"
-    t.integer  "configuration_parameter_id"
-    t.string   "value"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
-  add_index "segment_parameters", ["configuration_parameter_id"], :name => "index_segment_parameters_on_configuration_parameter_id"
-  add_index "segment_parameters", ["segment_id"], :name => "index_segment_parameters_on_segment_id"
 
   create_table "segments", :force => true do |t|
     t.integer  "configuration_id"
