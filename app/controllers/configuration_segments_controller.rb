@@ -18,5 +18,9 @@ class ConfigurationSegmentsController < ApplicationController
   def update
     update! {parent_url}
   end
+
+  def destroy
+    destroy! {parent_url}
+  end
 end
 
