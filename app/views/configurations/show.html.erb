@@ -6,6 +6,8 @@
 
 <%= link_to 'calc', calc_mine_configuration_path(@mine, @configuration) %>
 
-<%= render @configuration.configuration_segments %>
+<table>
+  <%= render @configuration.configuration_segments %>
+</table>
 
 <div class="cloud cluster" data-json='<%= JSON.pretty_generate(@configuration.item_segments.as_json) %>' data-segments='<%= @configuration.configuration_segments.count %>'></div>

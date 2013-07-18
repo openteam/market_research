@@ -1,5 +1,16 @@
-<%= @configuration_segment.title %>
+<h1>Список учреждений</h1>
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Адрес</th>
+    <th>Телефон</th>
+    <th>Email</th>
+  </tr>
+  <% @configuration_segment.items.each do |item| %>
+    <tr>
+      <%= render partial: 'items/item', locals: {item: item} %>
+    </tr>
+  <% end %>
+</table>
+<%= link_to "back", mine_configuration_path(@configuration_segment.configuration.mine, @configuration_segment.configuration) %>
 
-<%= render @configuration_segment.segment_parameters %>
-
-<%= link_to "to configuration", mine_configuration_path(@mine, @configuration) %>

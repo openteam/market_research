@@ -1,5 +1,8 @@
-<div>
-  <%= link_to configuration_segment.title, mine_configuration_configuration_segment_path(@mine, @configuration, configuration_segment) %>
-  <%= link_to 'edit', edit_mine_configuration_configuration_segment_path(@mine, @configuration, configuration_segment) %>
-  <%= link_to 'delete', mine_configuration_configuration_segment_path(@mine, @configuration, configuration_segment), :method => :delete, :confirm => 'Вы уверены?' %>
-</div>
+<tr>
+  <td>
+    <%= configuration_segment.title %>
+    (<%= link_to "#{configuration_segment.items.count}", mine_configuration_configuration_segment_path(configuration_segment.configuration.mine, configuration_segment.configuration, configuration_segment) %>)
+    <%= link_to 'edit', edit_mine_configuration_configuration_segment_path(@mine, @configuration, configuration_segment) %>
+    <%= link_to 'delete', mine_configuration_configuration_segment_path(@mine, @configuration, configuration_segment), :method => :delete, :confirm => 'Вы уверены?' %>
+  </td>
+</tr>
