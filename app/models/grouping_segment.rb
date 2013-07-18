@@ -1,7 +1,13 @@
 require 'segment'
 
 class GroupingSegment < Segment
+  has_ancestry
+
   attr_accessible :title, :grouping_value, :parent, :grouping
+
+  belongs_to :grouping
+
+  belongs_to :grouping_value, :polymorphic => true
 
   after_create :associate_items
 

@@ -1,6 +1,8 @@
 class ConfigurationSegment < Segment
   attr_accessible :title, :configuration_segment_parameters_attributes
 
+  belongs_to :configuration
+
   has_many :configuration_segment_parameters, :dependent => :destroy
 
   accepts_nested_attributes_for :configuration_segment_parameters
