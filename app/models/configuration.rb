@@ -7,7 +7,7 @@ class Configuration < ActiveRecord::Base
   has_many :items,                    :through => :mine
 
   has_many :configuration_segments,   :dependent => :destroy
-  has_many :segment_parameters,       :through => :configuration_segments
+  has_many :configuration_segment_parameters,       :through => :configuration_segments
   has_many :item_segments,            :through => :configuration_segments
 
   accepts_nested_attributes_for :configuration_parameters
@@ -35,7 +35,7 @@ class Configuration < ActiveRecord::Base
   private
 
   def set_min_and_max_values_for_quantity_parameters
-    segment_parameters.each(&:set_min_and_max_value)
+    configuration_parameters.where(:kind => :quantity).map(&:set_min_and_max_value)
   end
 
   def delete_item_segments

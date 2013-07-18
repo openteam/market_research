@@ -12,11 +12,14 @@ class Item < ActiveRecord::Base
 
   def dist_from(segment)
     dist = 0
-    k = segment.segment_parameters.map(&:weight).sum.to_f / segment.segment_parameters.count.to_f
+    k = segment.configuration_segment_parameters.map(&:weight).sum.to_f / segment.configuration_segment_parameters.count.to_f
 
-    segment.segment_parameters.each do |segment_parameter|
-      dist += 1.0 * segment_parameter.weight * k if segment_parameter.quality? && data.send(segment_parameter.title) != segment_parameter.value
-      dist += (data.send(segment_parameter.title).to_f - segment_parameter.value.to_f).abs / (segment_parameter.max_value - segment_parameter.min_value) * segment_parameter.weight * k if segment_parameter.quantity?
+    segment.configuration_segment_parameters.each do |segment_parameter|
+      if segment_parameter.quality?
+        dist += segment_parameter.quality_value.include?(data[segment_parameter.title]) ? 0 : 1.0 * segment_parameter.weight * k
+      else
+        dist += (data.send(segment_parameter.title).to_f - segment_parameter.quantity_value.to_f).abs / (segment_parameter.max_value - segment_parameter.min_value) * segment_parameter.weight * k
+      end
     end
 
     dist
