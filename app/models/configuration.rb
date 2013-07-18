@@ -6,7 +6,7 @@ class Configuration < ActiveRecord::Base
   has_many :configuration_parameters, :dependent => :destroy, :order => 'configuration_parameters.id ASC'
   has_many :items,                    :through => :mine
 
-  has_many :configuration_segments,   :dependent => :destroy
+  has_many :configuration_segments,   :dependent => :destroy, :order => 'id ASC'
   has_many :configuration_segment_parameters,       :through => :configuration_segments
   has_many :item_segments,            :through => :configuration_segments
 
