@@ -1,4 +1,4 @@
-<% segment.children.each do |child| %>
+<% segment.children.order(:title).each do |child| %>
   <tr>
     <td><%= content_tag "h#{child.depth+1}", child.title %></td>
     <td><%= link_to "#{child.items.count}", [@mine, @grouping, child] %></td>
