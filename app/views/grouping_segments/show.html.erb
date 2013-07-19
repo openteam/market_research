@@ -1,4 +1,10 @@
-<h1>Список учреждений</h1>
+<h1>
+  <% @grouping_segment.ancestors.each do |ancestor| %>
+    <%= ancestor.title %>
+  <% end %>
+  <%= @grouping_segment.title %>
+</h1>
+<h2>Список учреждений</h2>
 <table>
   <tr>
     <th>Название</th>
