@@ -1,0 +1,15 @@
+<div class='segmets'>
+  <table>
+    <% collection.each do |segment| %>
+      <tr>
+      <td colspan=2><%= content_tag "h#{segment.depth+1}", "#{segment.title}" %>(<%= link_to "#{segment.items.count}", [@mine, @grouping, segment] %>)</td>
+      </tr>
+      <%= render :partial => 'segments_level', :locals => {segment: segment} %>
+    <% end %>
+  </table>
+
+  <div class='links'>
+    <%= link_to "recalculate", rebuild_mine_grouping_path(@mine, @grouping), :method => :put %>
+    <%= link_to "back", [@mine, @grouping] %>
+  </div>
+</div>

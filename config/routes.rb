@@ -7,9 +7,8 @@ MarketResearch::Application.routes.draw do
 
     resources :groupings do
       resources :grouping_parameters, :only => [:edit, :update]
-      get 'grouping_segments', :on => :member
-      get 'grouping_segments/:id', to: 'grouping_segments#show', as: 'segments'
       put 'rebuild', :on => :member
+      resources :grouping_segments, :only => [:index, :show]
     end
   end
 

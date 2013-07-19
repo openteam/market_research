@@ -18,10 +18,10 @@ class GroupingSegment < Segment
       item_parameter_value = item.data[grouping_value.grouping_parameter.title]
       case grouping_value.class.name
       when  "QualityGroupingValue"
-        item_segments.create(item: item) if grouping_value.values.include?(item_parameter_value)
+        item_segments.create(item_id: item.id) if grouping_value.values.include?(item_parameter_value)
       when "QuantityGroupingValue"
         item_parameter_value = item_parameter_value.to_i
-        item_segments.create(item: item) if item_parameter_value >= grouping_value.min_count && item_parameter_value <= grouping_value.max_count
+        item_segments.create(item_id: item.id) if item_parameter_value >= grouping_value.min_count && item_parameter_value <= grouping_value.max_count
       end
     end
   end

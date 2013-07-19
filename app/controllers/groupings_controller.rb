@@ -5,13 +5,10 @@ class GroupingsController < ApplicationController
 
   belongs_to :mine
 
-  custom_actions :resource => [:grouping_segments, :rebuild]
-
-  def segments
-  end
+  custom_actions :resource => [:rebuild]
 
   def rebuild
     resource.rebuild_segments
-    redirect_to grouping_segments_resource_path
+    redirect_to mine_grouping_grouping_segments_path(parent, resource)
   end
 end
